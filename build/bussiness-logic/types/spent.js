@@ -1,10 +1,5 @@
-export type Spent = {
-  id?: string;
-  amount: number;
-  name: string;
-  userId: string;
-};
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // export enum Categories {
 //   Alimentación,
 //   Cuentas,

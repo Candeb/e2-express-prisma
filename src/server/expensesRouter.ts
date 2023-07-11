@@ -3,5 +3,6 @@ import * as controllers from './controllers';
 
 export const expensesRouter = Router();
 
-expensesRouter.post('/', controllers.createSpentController);
-expensesRouter.get('/:id', controllers.getSpentByIdController);
+expensesRouter.post('/new', controllers.createSpentController);
+expensesRouter.get('/id/:id', controllers.getSpentByIdController);
+expensesRouter.delete('/delete/:id', controllers.deleteSpentController);

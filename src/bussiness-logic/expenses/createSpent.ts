@@ -1,5 +1,5 @@
-import { Spent } from './types/spent';
-import { prisma } from '../repository/prisma';
+import { Spent } from '../types/spent';
+import { prisma } from '../../repository/prisma';
 
 export async function createSpent(spent: Spent): Promise<Spent> {
   try {
@@ -8,8 +8,10 @@ export async function createSpent(spent: Spent): Promise<Spent> {
       data: {
         name: spent.name,
         amount: spent.amount,
+        userId: spent.userId,
       },
     });
+    console.log(createdSpent);
 
     return createdSpent;
   } catch (err) {

@@ -1,5 +1,6 @@
-import { prisma } from '../repository/prisma';
-import { Spent } from './types/spent';
+import { Expenses, PrismaClient } from '@prisma/client';
+import { prisma } from '../../repository/prisma';
+import { Spent } from '../types/spent';
 
 export async function getSpentById(spentId: string): Promise<Spent | null> {
   try {
