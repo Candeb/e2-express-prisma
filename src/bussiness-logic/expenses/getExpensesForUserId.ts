@@ -9,13 +9,10 @@ export async function getExpensesForUserId(userId: string) {
         id: userId,
       },
       select: {
-        name: true,
-        email: true,
         expenses: {
           select: {
             amount: true,
             name: true,
-            userId: true,
           },
         },
       },

@@ -4,8 +4,8 @@ const db = new PrismaClient();
 
 export async function getAllUsers(): Promise<Users[]> {
   try {
-    const arrayUsers = db.users.findMany();
-    return arrayUsers;
+    const allUsers = db.users.findMany();
+    return allUsers;
   } catch (error) {
     console.log(error);
     throw error;

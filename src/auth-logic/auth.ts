@@ -4,9 +4,8 @@ import { prisma } from '../repository/prisma';
 import { User } from '../bussiness-logic/types/user';
 import { Users } from '@prisma/client';
 
-const access_token_secret = 'vdrgv';
-
-const refresh_token_secret = 'serff';
+const access_token_secret = process.env.ACCESS_TOKEN_SECRET ?? '';
+const refresh_token_secret = process.env.REFRESH_TOKEN_SECRET ?? '';
 
 export type loginResponse = { accessToken: string; refreshToken: string };
 
@@ -24,7 +23,7 @@ export const login = async (
     const result = await bcrypt.compare(password, user.password);
     if (result) {
       const accessToken = jwt.sign(
-        { email: email, role: 'CLIENT' },
+        { email: email, role: 'USER' },
         access_token_secret,
         {
           expiresIn: 60 * 60,
@@ -46,11 +45,11 @@ export const register = async (
   name: string,
   email: string,
   password: string
-): Promise<void> => {
+): Promise<any> => {
   const hash = await bcrypt.hash(password, 10);
 
   try {
-    const user: any = await prisma().users.create({
+    const user = await prisma().users.create({
       data: {
         name: name,
         email: email,
@@ -78,7 +77,7 @@ export const refreshToken = async (token: string): Promise<loginResponse> => {
         throw new Error('Usuario no encontrado');
       }
       const accessToken = jwt.sign(
-        { email: user.email, role: 'CLIENT' },
+        { email: user.email, role: 'USER' },
         access_token_secret,
         {
           expiresIn: 60 * 60,

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { prisma } from '../repository/prisma';
 import { createSpent } from '../bussiness-logic/expenses/createSpent';
 import { getSpentById } from '../bussiness-logic/expenses/getSpent';
@@ -11,9 +11,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Users } from '@prisma/client';
 import { login, refreshToken, register } from '../auth-logic/auth';
-
-// const access_token_secret: string = process.env.ACCESS_TOKEN_SECRET;
-// const refresh_token_secret: string = process.env.REFRESH_TOKEN_SECRET;
 
 // expenses
 
