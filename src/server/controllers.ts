@@ -124,7 +124,7 @@ export const refreshController = async (req: Request, res: Response) => {
     res.json(result);
     return;
   } catch (error) {
-    res.status(500);
+    res.status(500).json({ message: 'No autorizado: el token no está presente' });
     return;
   }
 };
